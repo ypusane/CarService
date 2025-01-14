@@ -1,0 +1,73 @@
+﻿
+/* Body Background Color */
+body {
+    background-color: #f0f0f0; /* Example color, you can change this */
+}
+
+* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Banner Container */
+.banner-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Banner Styling */
+.banner {
+    width: 100%;
+    margin-bottom: 30px; /* Space between banners */
+}
+
+.banner-image {
+    width: 100%; /* Full width */
+    height: 300px; /* Same height for all banners */
+    object-fit: cover; /* Keeps image ratio */
+    display: block; /* Removes extra space */
+}
+
+/* Add this CSS to center the form on the page */
+.form-container {
+    width: 50%; /* Adjust the width as needed */
+    margin: 50px auto; /* Centers horizontally with margin for spacing */
+    padding: 20px; /* Add padding around the form */
+    background-color: #f9f9f9; /* Optional background color */
+    border-radius: 8px; /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+
+    /* To center the form vertically */
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+h2.text-center {
+    margin-bottom: 20px; /* Optional spacing for header */
+}
+
+.container-fluid {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+

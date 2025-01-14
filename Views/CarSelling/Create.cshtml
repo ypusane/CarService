@@ -1,0 +1,49 @@
+﻿@model Carzz.ViewModels.CarSellingCreateViewModel
+
+@{
+    ViewBag.Title = "Car Selling Form";
+}
+
+<h2>Car Selling Form</h2>
+
+<div class="form-container">
+    @using (Html.BeginForm("Create", "CarSelling", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.ServiceName, new { @Value = "Car Selling" })
+        @Html.HiddenFor(m => m.SubmittedOn, new { @Value = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.RCBook, "RC Book")
+            <input type="file" name="RCBook" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Insurance, "Insurance")
+            <input type="file" name="Insurance" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FrontPhoto, "Front View Photo")
+            <input type="file" name="FrontPhoto" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.RearPhoto, "Rear View Photo")
+            <input type="file" name="RearPhoto" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LeftPhoto, "Left View Photo")
+            <input type="file" name="LeftPhoto" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.RightPhoto, "Right View Photo")
+            <input type="file" name="RightPhoto" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+</div>

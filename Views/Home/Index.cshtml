@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">WELCOME! TO CAR SERVICES</h1>
+        <p class="lead">Our Service, Your Satisfaction</p>
+    </section>
+
+    <div class="banner-container">
+        <div class="banner">
+            <a href="@Url.Action("Create", "CarSelling")">
+                <img src="~/images/CarSelling.jpg" alt="CAR_SELLING" class="banner-image" />
+                <h3 class="text-center mt-2">CAR SELLING</h3>
+            </a>
+        </div>
+        <div class="banner">
+            <a href="@Url.Action("Create", "CarServicing")">
+                <img src="~/images/CarServicing.jpg" alt="CAR_SERVICING" class="banner-image" />
+                <h3 class="text-center mt-2">CAR SERVICING</h3>
+            </a>
+        </div>
+    </div>
+
+</main>
