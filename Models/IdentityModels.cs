@@ -21,6 +21,7 @@ namespace Carzz.Models
         }
     }
 
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -35,5 +36,11 @@ namespace Carzz.Models
         public DbSet<CarSellingModel> CarSellingServices { get; set; }
         public DbSet<CarServicingModel> CarServingServices { get; set; }
 
+    }
+
+    public class ApplicationRole :IdentityRole
+    {
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string roleName) : base(roleName) { }
     }
 }
