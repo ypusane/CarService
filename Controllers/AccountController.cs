@@ -174,37 +174,120 @@ namespace Carzz.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //        var result = await UserManager.CreateAsync(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-        //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-        //            // Send an email with this link
-        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+		// List all users
+		public ActionResult ListAllUsers()
+		{
+			var users = UserManager.Users.ToList();
+			return View(users);
+		}
 
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        AddErrors(result);
-        //    }
+		// GET: Edit user
+		public ActionResult EditUser(string id)
+		{
+			if (id == null)
+			{
+				return HttpNotFound();
+			}
 
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
+			var user = UserManager.FindById(id);
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
 
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+			return View(user);
+		}
+
+		// POST: Edit user
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult EditUser(ApplicationUser model)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = UserManager.FindById(model.Id);
+				if (user != null)
+				{
+					user.UserName = model.UserName;
+					user.Email = model.Email;
+
+					var result = UserManager.Update(user);
+					if (result.Succeeded)
+					{
+						return RedirectToAction("ListAllUsers");
+					}
+					AddErrors(result);
+				}
+			}
+			return View(model);
+		}
+
+		// GET: Delete user
+		public ActionResult DeleteUser(string id)
+		{
+			if (id == null)
+			{
+				return HttpNotFound();
+			}
+
+			var user = UserManager.FindById(id);
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
+
+			return View(user);
+		}
+
+		// POST: Confirm delete user
+		[HttpPost, ActionName("DeleteUser")]
+		[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirmed(string id)
+		{
+			var user = UserManager.FindById(id);
+			if (user != null)
+			{
+				var result = UserManager.Delete(user);
+				if (result.Succeeded)
+				{
+					return RedirectToAction("ListAllUsers");
+				}
+				AddErrors(result);
+			}
+			return View(user);
+		}
+
+		//[HttpPost]
+		//[AllowAnonymous]
+		//[ValidateAntiForgeryToken]
+		//public async Task<ActionResult> Register(RegisterViewModel model)
+		//{
+		//    if (ModelState.IsValid)
+		//    {
+		//        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+		//        var result = await UserManager.CreateAsync(user, model.Password);
+		//        if (result.Succeeded)
+		//        {
+		//            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+		//            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+		//            // Send an email with this link
+		//            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+		//            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+		//            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+		//            return RedirectToAction("Index", "Home");
+		//        }
+		//        AddErrors(result);
+		//    }
+
+		//    // If we got this far, something failed, redisplay form
+		//    return View(model);
+		//}
+
+		//
+		// GET: /Account/ConfirmEmail
+		[AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)

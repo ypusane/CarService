@@ -1,5 +1,6 @@
 ﻿using Carzz.Models;
 using Carzz.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.IO;
 using System.Linq;
@@ -32,8 +33,10 @@ namespace YourNamespace.Controllers
                 string LeftPhotopath = ProcessUploadedFile(carSellingCreateViewModel.LeftPhoto);
                 string RightPhotopath = ProcessUploadedFile(carSellingCreateViewModel.RightPhoto);
 
+				// Get the logged-in user's ID
+				string userId = User.Identity.GetUserId();
 
-                CarSellingModel carSellingModel = new CarSellingModel()
+				CarSellingModel carSellingModel = new CarSellingModel()
                 {
                     RCBookPath = RCBookpath,
                     InsurancePath = Insurancepath,
@@ -44,7 +47,8 @@ namespace YourNamespace.Controllers
                     //ServiceId = carSellingCreateViewModel.ServiceId,
                     ServiceName = carSellingCreateViewModel.ServiceName,
                     SubmittedOn = carSellingCreateViewModel.SubmittedOn,
-                };
+					UserId = userId // Set the UserId to the logged-in user's ID
+				};
                 db.CarSellingServices.Add(carSellingModel);
                 db.SaveChanges();
                 TempData["Acknowledgement"] = "Your service has been booked successfully!";

@@ -33,8 +33,7 @@ namespace Carzz.Controllers
 		//List all Customers
         public ActionResult UserManagement() 
         {
-			var customers = _context.Users.ToList(); // Assuming Users table holds customer data
-			return View(customers);
+			return RedirectToAction("ListAllUsers","Account");
         }
 
         public ActionResult CarServiceManagement()

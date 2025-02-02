@@ -1,5 +1,6 @@
 ﻿using Carzz.Models;
 using Carzz.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Carzz.Controllers
                     AppointmentTime = carServicingModel.AppointmentTime,
                     BookingTime = carServicingModel.BookingTime,
                     ProblemDescription = carServicingModel.ProblemDescription,
+                    UserId = User.Identity.GetUserId() // Set the UserId to the logged-in user's ID
                 };
                 db.CarServingServices.Add(carServicing);
                 db.SaveChanges();

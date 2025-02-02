@@ -24,5 +24,11 @@ namespace Carzz.Models
 
         public string ProblemDescription{ get; set; }
 
-    }
+		[ForeignKey("ApplicationUser")]
+		public string UserId { get; set; }
+
+		// Navigation Property
+		public virtual ApplicationUser ApplicationUser { get; set; }
+
+	}
 }

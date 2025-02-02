@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Carzz.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2>All Users</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>UserName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.UserName</td>
+                <td>
+                    <a href="@Url.Action("EditUser", "Account", new { id = user.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteUser", "Account", new { id = user.Id })" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

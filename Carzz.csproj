@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202501181359514_role.Designer.cs">
       <DependentUpon>202501181359514_role.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501281708310_updatemodels.cs" />
+    <Compile Include="Migrations\202501281708310_updatemodels.Designer.cs">
+      <DependentUpon>202501281708310_updatemodels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CarServicingModel.cs" />
@@ -286,11 +290,15 @@
     <Content Include="Views\ManageRoles\EditRole.cshtml" />
     <Content Include="Views\ManageRoles\EditUserRole.cshtml" />
     <Content Include="Views\ManageRoles\ListRoles.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Account\ListAllUsers.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\DeleteUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\ManageUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -331,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501181359514_role.resx">
       <DependentUpon>202501181359514_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501281708310_updatemodels.resx">
+      <DependentUpon>202501281708310_updatemodels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

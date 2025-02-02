@@ -1,0 +1,24 @@
+﻿@model Carzz.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>Edit User</h2>
+
+<form method="post" action="@Url.Action("EditUser", "Account")">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        <label>User Name</label>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="@Url.Action("ListAllUsers", "Account")" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,16 @@
+﻿@model Carzz.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<h2>Delete User</h2>
+<p>Are you sure you want to delete <strong>@Model.UserName</strong>?</p>
+
+<form method="post" action="@Url.Action("DeleteUser", "Account")">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="@Url.Action("ListAllUsers", "Account")" class="btn btn-secondary">Cancel</a>
+</form>

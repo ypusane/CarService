@@ -43,5 +43,11 @@ namespace Carzz.Models
             public string ServiceName { get; set; } = "Car Selling";
 
             public DateTime SubmittedOn { get; set; } = DateTime.Now;
-        }
+
+		    [ForeignKey("ApplicationUser")]
+		    public string UserId { get; set; }
+
+		    // Navigation Property
+		    public virtual ApplicationUser ApplicationUser { get; set; }
+	}
     }
